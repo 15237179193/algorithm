@@ -177,6 +177,23 @@
     +-----------+-------------------+-----------------+
     ```
    
+5. [MySQL INNER JOIN子句](https://www.begtut.com/mysql/mysql-inner-join.html)
+
+    using() 函数的使用
+    
+    由于两个表的连接列具有相同的名称   productline，因此可以使用以下语法：
+    
+    ```
+    SELECT 
+        productCode, 
+        productName, 
+        textDescription
+    FROM
+        products
+            INNER JOIN
+        productlines USING (productline); 
+    ```
+   
 5. 
     
     
