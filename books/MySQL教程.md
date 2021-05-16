@@ -1,3 +1,5 @@
+[TOC]
+
 ## 前言
 
 该文档是记录阅读MySQL教程过程中，遇到的一些个人认为实用但很少用到的函数等内容。菜鸟可看，高手请绕行。
@@ -194,6 +196,42 @@
         productlines USING (productline); 
     ```
    
-5. 
+5. [MySQL 复合索引](https://www.begtut.com/mysql/mysql-composite-index.html)
     
+    复合索引是多列的索引。MySQL允许您创建一个最多包含16列的复合索引。
     
+6. [MySQL 自然语言全文搜索](https://www.begtut.com/mysql/mysql-natural-language-search.html)
+
+    使用全文搜索时，您应记住以下几点：
+    
+    - 在MySQL全文搜索引擎定义的搜索词的最小长度为4。这意味着，如果你搜索其长度小于4例如关键字car，cat等等，你不会得到任何结果。
+    
+    - 停用词被忽略。MySQL定义了MySQL源代码分发中的停用词列表 storage/myisam/ft_static.c
+    
+7. [MySQL 布尔全文搜索](https://www.begtut.com/mysql/mysql-boolean-text-searches.html) 
+
+    MySQL布尔全文搜索主要功能：
+    
+    - MySQL不会按照布尔全文搜索中相关性降低的顺序自动对行进行排序。
+    
+    - 要执行布尔查询，InnoDB表要求MATCH表达式的所有列都有FULLTEXT索引。请注意，虽然搜索速度很慢，但MyISAM表并不需要这样。
+    
+    - MySQL在InnoDB表上的搜索查询中不支持多个布尔运算符，例如'++ mysql'。如果你这样做，MySQL将返回错误。但是，MyISAM的行为有所不同。它忽略其他运算符并使用最接近搜索词的运算符，例如，'+ -mysql'将变为'-mysql'。
+    
+    - InnoDB全文搜索不支持尾随加号（+）或减号（ - ）。它只支持前导加号或减号。如果搜索单词是'mysql +'或'mysql-'，MySQL将报告错误。此外，带有通配符的以下前导加号或减号无效：+ *，+ -
+    
+    - 未应用50％阈值。顺便说一句，50％阈值意味着如果一个单词出现在超过50％的行中，MySQL将在搜索结果中忽略它。
+
+8. [MySQL ngram](https://www.begtut.com/mysql/mysql-ngram-full-text-parser.html)
+
+    处理停用词
+    
+    - ngram解析器排除包含禁用词列表中的停用词的令牌。例如，假设ngram_token_size为2且文档包含"abc"。ngram解析器将文档标记为"ab"和"bc"。如果"b"是一个停用词，ngram将排除两者"ab"，"bc"因为它们包含"b"。
+    
+    - 请注意，如果语言不是英语，则必须定义自己的禁用词列表。此外，长度大于的停用词将ngram_token_size被忽略。
+    
+    - 在本教程中，您学习了如何使用MySQL ngram全文解析器来处理表意语言的全文搜索。
+
+9. 
+
+
